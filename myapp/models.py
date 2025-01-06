@@ -9,9 +9,9 @@ class Product(models.Model):
      price = models.DecimalField(max_digits=20, decimal_places=2)
      available = models.BooleanField()
 
-     # def clean(self):
-     #      if self.price <= 0:
-     #           raise ValidationError('Price cannot be negative')
+     def clean(self):
+          if self.price <= 0:
+               raise ValidationError('Price cannot be negative')
 
 class Customer(models.Model):
      id = models.AutoField(primary_key=True)
@@ -25,6 +25,7 @@ class Order(models.Model):
           "Sent": "Sent",
           "Completed": "Completed"
      }
+
 
      id = models.AutoField(primary_key=True)
      customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
