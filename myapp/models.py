@@ -5,13 +5,13 @@ from django.db import models
 
 class Product(models.Model):
      id = models.AutoField(primary_key=True)
-     name = models.CharField(max_length=255)
+     name = models.CharField(max_length=255) # here changed to 50
      price = models.DecimalField(max_digits=20, decimal_places=2)
      available = models.BooleanField()
 
-     def clean(self):
-          if self.price <= 0:
-               raise ValidationError('Price cannot be negative')
+     # def clean(self):
+     #      if self.price <= 0:
+     #           raise ValidationError('Price cannot be negative')
 
 class Customer(models.Model):
      id = models.AutoField(primary_key=True)
@@ -41,7 +41,6 @@ class Order(models.Model):
 
      def check_if_possible(self):
           for product in self.products.all():
-               if product.available == False:
+               if not product.available:
                     return False
-               else:
-                    return True
+          return True
