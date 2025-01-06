@@ -119,3 +119,4 @@ class OrderModelTests(TestCase):
           is_possible = temp_order.check_if_possible()
 
           self.assertFalse(is_possible)
+#
