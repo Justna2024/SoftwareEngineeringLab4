@@ -23,7 +23,7 @@ jobs:
     # make sure your requirements file is up to date
       - name: Generate API documentation
         run: |
-          source venv/bin/activate
+          source list_4/bin/activate
           python manage.py generateschema > docs.json
     # modiify the paths if necessary
       - name: Commit and push documentation
