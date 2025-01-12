@@ -17,8 +17,8 @@ jobs:
           python-version: 3.11.4 # change to your Python version
       - name: Install dependencies
         run: |
-          python -m venv venv
-          source venv/bin/activate
+          python -m venv list_4
+          source list_4/bin/activate
           pip install -r requirements.txt
     # make sure your requirements file is up to date
       - name: Generate API documentation
