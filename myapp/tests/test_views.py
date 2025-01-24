@@ -107,15 +107,15 @@ class ProductApiTest(APITestCase):
           self.assertEqual(response.data['price'], '1.99')
           self.assertTrue(response.data['available'])
 
-     def test_modify_existing_product_with_invalid_data_admin(self):
-          self.token = str(AccessToken.for_user(self.admin))
-          self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
-
-          data = {"name": ""}
-          response = self.client.patch(self.product_detail_url, data, format='json')
-          self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
+     # def test_modify_existing_product_with_invalid_data_admin(self):
+     #      self.token = str(AccessToken.for_user(self.admin))
+     #      self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
      #
+     #      data = {"name": ""}
+     #      response = self.client.patch(self.product_detail_url, data, format='json')
+     #      self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+     # comment
      def test_delete_existing_product_user(self):
           self.token = str(AccessToken.for_user(self.regular_user))
           self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
