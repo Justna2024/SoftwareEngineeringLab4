@@ -60,4 +60,4 @@ jobs:
       - name: Execute unit tests
         run: docker exec $(docker-compose ps -q api) python
           manage.py test myapp/tests
-    # modiify the path if necessary
+    # modiify the path if necessaryy
