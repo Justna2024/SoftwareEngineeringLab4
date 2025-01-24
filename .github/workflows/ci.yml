@@ -5,6 +5,7 @@ on:
       - main
 jobs:
   docs:
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -38,3 +39,25 @@ jobs:
           git push origin main
     env:
       GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  test:
+    runs-on: ubuntu-latest
+    services:
+            db:
+              image: postgres:17
+              env:
+                POSTGRES_USER: testuser
+                POSTGRES_PASSWORD: testpassword
+                POSTGRES_DB: testdb
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+      - name: Build and start Containers
+        run: docker-compose up --build -d
+      - name: Execute unit tests
+        run: docker exec $(docker-compose ps -q api) python
+          manage.py test myapp/tests
+    # modiify the path if necessary
