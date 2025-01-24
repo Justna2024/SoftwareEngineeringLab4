@@ -108,7 +108,7 @@ class ProductApiTest(APITestCase):
           self.assertTrue(response.data['available'])
 
      def test_modify_existing_product_with_invalid_data_admin(self):
-          self.token = str(AccessToken.for_user(self.regular_user))
+          self.token = str(AccessToken.for_user(self.admin))
           self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.token}')
 
           data = {"name": ""}
